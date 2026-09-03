@@ -1,4 +1,4 @@
-package com.primeiroprojetospring.ProjetoSpring;
+package com.primeiroprojetospring.ProjetoSpring.course;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
