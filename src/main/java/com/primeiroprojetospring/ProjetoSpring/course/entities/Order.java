@@ -3,10 +3,12 @@ package com.primeiroprojetospring.ProjetoSpring.course.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.primeiroprojetospring.ProjetoSpring.course.entities.enums.OrderStatus;
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.Mapping;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
