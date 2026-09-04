@@ -1,6 +1,7 @@
 package com.primeiroprojetospring.ProjetoSpring.course.resources;
 
 import com.primeiroprojetospring.ProjetoSpring.course.entities.User;
+import com.primeiroprojetospring.ProjetoSpring.course.repositories.UserRepository;
 import com.primeiroprojetospring.ProjetoSpring.course.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ public class UserResource {
 
     @Autowired
     private UserService service;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
@@ -41,4 +44,10 @@ public class UserResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+   @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id,@RequestBody User obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+   }
 }
