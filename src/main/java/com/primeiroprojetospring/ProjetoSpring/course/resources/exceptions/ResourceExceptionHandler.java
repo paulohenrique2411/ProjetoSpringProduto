@@ -1,6 +1,8 @@
 package com.primeiroprojetospring.ProjetoSpring.course.resources.exceptions;
 
 import com.primeiroprojetospring.ProjetoSpring.course.services.exceptions.DataBaseException;
+import com.primeiroprojetospring.ProjetoSpring.course.services.exceptions.DataIntegrityException;
+import com.primeiroprojetospring.ProjetoSpring.course.services.exceptions.IntegrityConstraintViolationException;
 import com.primeiroprojetospring.ProjetoSpring.course.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,5 +32,19 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(DataIntegrityException.class)
+    public ResponseEntity<StandardError> dataIntegrityException(DataIntegrityException e, HttpServletRequest request){
+        String error = "DataIntegrity error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error,e.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
 
+    @ExceptionHandler(IntegrityConstraintViolationException.class)
+    public ResponseEntity<StandardError> integrityConstraintViolationException(IntegrityConstraintViolationException e, HttpServletRequest request){
+        String error = "Integrity Constraint Violation error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error,e.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
 }

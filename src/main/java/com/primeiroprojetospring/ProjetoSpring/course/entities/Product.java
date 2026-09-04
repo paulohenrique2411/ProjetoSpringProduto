@@ -2,6 +2,7 @@ package com.primeiroprojetospring.ProjetoSpring.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name",unique = true, nullable = false)
     private String name;
     private String description;
     private Double price;
